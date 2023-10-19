@@ -17,11 +17,33 @@ Install the necessary dependencies:
 npm install
 ```
 
+### Global Command
+
+To use `alloy` as a global command:
+
+```bash
+npm link
+```
+
+After running `npm link`, you can use the `alloy` command directly in your terminal.
+
+### Local Command
+
+If you prefer not to install the command globally, you can also run the CLI directly using:
+
+```bash
+./alloy.js <COMMAND>
+```
+
 ## Usage
 
 ### General
 
 - **Initialize Configuration**
+  ```bash
+  alloy init
+  ```
+  or
   ```bash
   ./alloy.js init
   ```
@@ -31,10 +53,18 @@ npm install
 
 - **List Users**
   ```bash
+  alloy users list
+  ```
+  or
+  ```bash
   ./alloy.js users list
   ```
 
 - **Create User**
+  ```bash
+  alloy users create
+  ```
+  or
   ```bash
   ./alloy.js users create
   ```
@@ -42,10 +72,18 @@ npm install
 
 - **Delete User**
   ```bash
+  alloy users delete <USER_ID>
+  ```
+  or
+  ```bash
   ./alloy.js users delete <USER_ID>
   ```
 
 - **Get User by ID**
+  ```bash
+  alloy users get <USER_ID>
+  ```
+  or
   ```bash
   ./alloy.js users get <USER_ID>
   ```
@@ -54,16 +92,28 @@ npm install
 
 - **List Integrations**
   ```bash
+  alloy integrations list
+  ```
+  or
+  ```bash
   ./alloy.js integrations list
   ```
 
 - **Install Integration**
+  ```bash
+  alloy integrations install <INTEGRATION_ID>
+  ```
+  or
   ```bash
   ./alloy.js integrations install <INTEGRATION_ID>
   ```
   Launches the Alloy Modal to Install an Integration for the CLI user. The modal runs as an electron app as an isolated session from your default browser
 
 - **Get Integration by ID**
+  ```bash
+  alloy integrations get <INTEGRATION_ID>
+  ```
+  or
   ```bash
   ./alloy.js integrations get <INTEGRATION_ID>
   ```
@@ -72,10 +122,18 @@ npm install
 
 - **List Workflows**
   ```bash
+  alloy workflows list
+  ```
+  or
+  ```bash
   ./alloy.js workflows list
   ```
 
 - **Configure Workflow**
+  ```bash
+  alloy workflows config <WORKFLOW_ID>
+  ```
+  or
   ```bash
   ./alloy.js workflows config <WORKFLOW_ID>
   ```
@@ -83,16 +141,34 @@ npm install
 
 - **Run Workflow**
   ```bash
+  alloy workflows run <WORKFLOW_ID> <EVENT> <DATA>
+  ```
+  or
+  ```bash
   ./alloy.js workflows run <WORKFLOW_ID> <EVENT> <DATA>
+  ```
+  ```bash
+  alloy workflows run <WORKFLOW_ID>      #tries using saved config for workflowID from `workflows config`
+  ```
+  or
+  ```bash
   ./alloy.js workflows run <WORKFLOW_ID>      #tries using saved config for workflowID from `workflows config`
   ```
 
 - **Get Workflow by ID**
   ```bash
+  alloy workflows get <WORKFLOW_ID>
+  ```
+  or
+  ```bash
   ./alloy.js workflows get <WORKFLOW_ID>
   ```
 
 - **Upgrade Workflow**
+  ```bash
+  alloy workflows upgrade <WORKFLOW_ID>
+  ```
+  or
   ```bash
   ./alloy.js workflows upgrade <WORKFLOW_ID>
   ```
@@ -101,10 +177,18 @@ npm install
 
 - **List Credentials**
   ```bash
+  alloy credentials list
+  ```
+  or
+  ```bash
   ./alloy.js credentials list
   ```
 
 - **Delete Credential**
+  ```bash
+  alloy credentials delete <CREDENTIAL_ID>
+  ```
+  or
   ```bash
   ./alloy.js credentials delete <CREDENTIAL_ID>
   ```
@@ -113,10 +197,18 @@ npm install
 
 - **List Events**
   ```bash
+  alloy events list
+  ```
+  or
+  ```bash
   ./alloy.js events list
   ```
 
 - **Get Event by Name**
+  ```bash
+  alloy events get <EVENT_NAME>
+  ```
+  or
   ```bash
   ./alloy.js events get <EVENT_NAME>
   ```
@@ -126,11 +218,19 @@ npm install
 - **Raw Output**
   Add the `--raw` option to get the raw JSON output.
   ```bash
+  alloy <COMMAND> --raw
+  ```
+  or
+  ```bash
   ./alloy.js <COMMAND> --raw
   ```
 
 - **Help**
   Add the `--help` option to get help on the usage of commands.
+  ```bash
+  alloy <COMMAND> --help
+  ```
+  or
   ```bash
   ./alloy.js <COMMAND> --help
   ```

@@ -3,10 +3,15 @@ import axios from 'axios';
 import fs from 'fs';
 import inquirer from 'inquirer';
 import { formatIntegration, formatUser, formatUserList } from '../format.js';
+import path from 'path';
+import url from 'url';
+import chalk from 'chalk';
+
 
 
 const BASE_URL = 'https://embedded.runalloy.com/2023-06';
 const CONFIG_FILE = 'alloy-cli-config.json';
+
 
 async function configure() {
     let config = {};
@@ -37,8 +42,14 @@ async function configure() {
     }
 
     fs.writeFileSync(CONFIG_FILE, JSON.stringify(config));
-    console.log('Configuration saved.');
+    console.log(chalk.green("\n🚀 Configuration saved successfully!"));
+
+    // Guide to add CLI to PATH using npm link
+    console.log(chalk.cyan("\n🔧 To use 'alloy' globally:"));
+    console.log(chalk.yellow("1. Run the following command to create a symlink:"));
+    console.log(chalk.white("   npm link"));
 }
+
 async function listUsers(apiKey, rawOutput) {
     try {
         const response = await axios.get(`${BASE_URL}/users`, {
