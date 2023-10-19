@@ -61,6 +61,7 @@ npm install
   ```bash
   ./alloy.js integrations install <INTEGRATION_ID>
   ```
+  Launches the Alloy Modal to Install an Integration for the CLI user. The modal runs as an electron app as an isolated session from your default browser
 
 - **Get Integration by ID**
   ```bash
@@ -83,6 +84,7 @@ npm install
 - **Run Workflow**
   ```bash
   ./alloy.js workflows run <WORKFLOW_ID> <EVENT> <DATA>
+  ./alloy.js workflows run <WORKFLOW_ID>      #tries using saved config for workflowID from `workflows config`
   ```
 
 - **Get Workflow by ID**
