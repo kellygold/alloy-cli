@@ -6,6 +6,7 @@ import { listIntegrations, getIntegrationById, installIntegration } from './api/
 import { listWorkflows, configureWorkflow, runWorkflow, getWorkflowById, upgradeWorkflow } from './api/workflows.js';
 import { listCredentials, deleteCredential } from './api/credentials.js';
 import { listEvents, getByName as getEventByName } from './api/events.js';
+import { displayHelp } from './help.js';
 
 const CONFIG_FILE = 'alloy-cli-config.json';
 
@@ -13,10 +14,17 @@ const CONFIG_FILE = 'alloy-cli-config.json';
 const rawOutput = process.argv.includes('--raw') || process.argv.includes('-r');
 const help = process.argv.includes('--help') || process.argv.includes('-h');
 
+
+
 async function main() {
     const command = process.argv[2];
     const subCommand = process.argv[3];
     const thirdArg = process.argv[4];
+
+    if (help) {
+        displayHelp(command, subCommand);
+        return;
+    }
 
     if (command === 'init') {
         await configure();
