@@ -25,6 +25,7 @@ npm install
   ```bash
   ./alloy.js init
   ```
+  Initialize the CLI with your Alloy API key. This command will prompt you to enter your API key and save it for future requests.
 
 ### Users
 
@@ -37,6 +38,7 @@ npm install
   ```bash
   ./alloy.js users create
   ```
+  Create a new user. This command will prompt you to enter a username and optionally a full name.
 
 - **Delete User**
   ```bash
@@ -76,6 +78,7 @@ npm install
   ```bash
   ./alloy.js workflows config <WORKFLOW_ID>
   ```
+  Configure a workflow. This command will prompt you to enter a user ID, event name, and JSON data.
 
 - **Run Workflow**
   ```bash
