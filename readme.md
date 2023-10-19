@@ -78,7 +78,7 @@ npm install
   ```bash
   ./alloy.js workflows config <WORKFLOW_ID>
   ```
-  Configure a workflow. This command will prompt you to enter a user ID, event name, and JSON data.
+  Save a runtime configuration for a custom_event based workflow. This command will prompt you to enter a user ID, event name, and JSON data. (minify the JSON data to avoid ending command early.)
 
 - **Run Workflow**
   ```bash
