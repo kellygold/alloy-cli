@@ -45,7 +45,14 @@ If you prefer not to install the command globally, you can also run the CLI dire
   ```bash
   alloy init
   ```
-  Initialize the CLI with your Alloy API key. This command will prompt you to enter your API key and save it for future request. It also will create a cli-user with email alloy-cli-user@example.com if one does not already exist
+  Initialize the CLI with your Alloy API key. This command will prompt you to enter your API key and save it in a configuration file in your project directory for future requests. It also creates a cli-user with the email `alloy-cli-user@example.com` if one does not already exist. Your API key is sensitive information; use the `alloy exit` command to purge it when it's not in use.
+  **config storage:** `alloy-cli/alloy-cli-config.json`
+
+- **Exit and Purge API Key**
+  ```bash
+  alloy exit
+  ```
+  This command will purge the stored API key from the configuration file, ensuring that sensitive data is not left stored on your machine. Other configurations, like saved workflow configurations, will remain intact.
 
 ### Users
 
@@ -58,7 +65,6 @@ If you prefer not to install the command globally, you can also run the CLI dire
   ```bash
   alloy users create
   ```
-  Create a new user. This command will prompt you to enter a username and optionally a full name.
 
 - **Delete User**
   ```bash
@@ -81,7 +87,6 @@ If you prefer not to install the command globally, you can also run the CLI dire
   ```bash
   alloy integrations install <INTEGRATION_ID>
   ```
-  Launches the Alloy Modal to Install an Integration for the CLI user. The modal runs as an electron app as an isolated session from your default browser.
 
 - **Get Integration by ID**
   ```bash
@@ -99,24 +104,10 @@ If you prefer not to install the command globally, you can also run the CLI dire
   ```bash
   alloy workflows config <WORKFLOW_ID>
   ```
-  Save a runtime configuration for a custom_event based workflow. This command will prompt you to enter a user ID, event name, and JSON data. (minify the JSON data to avoid ending command early.)
 
 - **Run Workflow**
   ```bash
   alloy workflows run <WORKFLOW_ID> <EVENT> <DATA>
-  ```
-  ```bash
-  alloy workflows run <WORKFLOW_ID>      #tries using saved config for workflowID from `workflows config`
-  ```
-
-- **Get Workflow by ID**
-  ```bash
-  alloy workflows get <WORKFLOW_ID>
-  ```
-
-- **Upgrade Workflow**
-  ```bash
-  alloy workflows upgrade <WORKFLOW_ID>
   ```
 
 ### Credentials
