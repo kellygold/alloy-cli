@@ -2,6 +2,8 @@
 
 Alloy CLI is a command-line interface to interact with the Alloy API, allowing users to manage users, integrations, workflows, credentials, and events seamlessly from the terminal.
 
+![cli_info](https://github.com/kellygold/alloy-cli/assets/28990947/ecbea829-4af5-435e-b8f4-c0a7ff59c452)
+
 ## Installation
 
 Clone the repository to your local machine:
