@@ -45,7 +45,7 @@ If you prefer not to install the command globally, you can also run the CLI dire
   ```bash
   alloy init
   ```
-  Initialize the CLI with your Alloy API key. This command will prompt you to enter your API key and save it for future requests.
+  Initialize the CLI with your Alloy API key. This command will prompt you to enter your API key and save it for future request. It also will create a cli-user with email alloy-cli-user@example.com if one does not already exist
 
 ### Users
 
