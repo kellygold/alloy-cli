@@ -9,6 +9,7 @@ function displayHelp(command, subCommand) {
             workflows               Manage workflows.
             credentials             Manage credentials.
             events                  Manage events.
+            exit                    Remove your API key from local storage.
         
         Options:
             --help, -h              Display help information.

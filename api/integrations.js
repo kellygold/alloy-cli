@@ -3,6 +3,9 @@ import axios from 'axios';
 import { spawn } from 'child_process';
 import { formatIntegration } from '../format.js';
 
+import { fileURLToPath } from 'url';
+import path from 'path';
+
 const BASE_URL = 'https://embedded.runalloy.com/2023-06';
 const CONFIG_FILE = 'alloy-cli-config.json';
 
@@ -33,7 +36,10 @@ async function installIntegration(apiKey, userId, integrationId) {
     openUrlInBrowser(response.data.url);
 }
 function openUrlInBrowser(url) {
-    spawn('electron', ['./electron-browser.cjs', url], {
+    const currentDir = path.dirname(fileURLToPath(import.meta.url));
+    const browserPath = path.join(currentDir, 'electron-browser.cjs');
+    
+    spawn('electron', [browserPath, url], {
         stdio: 'inherit',
         detached: true
     }).unref();

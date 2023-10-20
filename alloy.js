@@ -7,6 +7,7 @@ import { listWorkflows, configureWorkflow, runWorkflow, getWorkflowById, upgrade
 import { listCredentials, deleteCredential } from './api/credentials.js';
 import { listEvents, getByName as getEventByName } from './api/events.js';
 import { displayHelp } from './help.js';
+import { exit } from './api/exit.js';
 
 const CONFIG_FILE = 'alloy-cli-config.json';
 
@@ -113,6 +114,9 @@ async function main() {
                     break;
             }
             break;
+        case 'exit':
+            await exit();
+            break;        
 
         default:
             console.log('Command not recognized.');
