@@ -1,4 +1,5 @@
 import chalk from 'chalk';
+import moment from 'moment';
 
 
 function formatIntegration(integration, displayBlocks = false) {
@@ -102,5 +103,20 @@ function formatUser(user) {
     console.log('\n'); // Adding a newline for better separation
 }
 
+function formatLogEntry(log, userId, workflowId) {
+    const startTime = moment(log.startedAt).format('YYYY-MM-DD HH:mm:ss');
+    const endTime = moment(log.finishedAt).format('YYYY-MM-DD HH:mm:ss');
+    const duration = moment.duration(moment(log.finishedAt).diff(moment(log.startedAt))).humanize();
+    const errorStatus = log.error ? chalk.red('Error') : chalk.green('Success');
 
-export { formatIntegration, formatWorkflow, formatCredentials, formatDeleteCredential, formatEventList, formatEventByName, formatUserList, formatUser };
+    console.log(chalk.bold(`User ID: ${userId}, Workflow ID: ${workflowId}`));
+    console.log(`Log ID: ${log.executionId}`);
+    console.log(`Status: ${errorStatus}`);
+    if (log.error) {
+        console.log(chalk.red(`Error: ${log.error}`));
+    }
+    console.log(`Started: ${chalk.cyan(startTime)}, Finished: ${chalk.cyan(endTime)}, Duration: ${chalk.yellow(duration)}`);
+    console.log(chalk.dim('--------------------------------------------------')); // Separator for readability
+}
+
+export { formatIntegration, formatWorkflow, formatCredentials, formatDeleteCredential, formatEventList, formatEventByName, formatUserList, formatUser, formatLogEntry };
