@@ -9,6 +9,7 @@ function displayHelp(command, subCommand) {
             workflows               Manage workflows.
             credentials             Manage credentials.
             events                  Manage events.
+            logs                    Fetch execution logs.
             exit                    Remove your API key from local storage.
         
         Options:
@@ -57,19 +58,35 @@ function displayHelp(command, subCommand) {
             Subcommands:
                 list                List all events.
                 get <EVENT_NAME>    Get details of an event by name.
+        `,
+        logs: `
+            Usage: ./alloy.js logs [SUBCOMMAND] [OPTIONS]
+            
+            Subcommands:
+                get --userId <USER_ID> --workflowId <WORKFLOW_ID>    Fetch logs for a specific user and workflow.
+                getall             Fetch all logs for all users and workflows.
+            
+            Options for 'get':
+                --userId <USER_ID>          Specify the user ID.
+                --workflowId <WORKFLOW_ID>  Specify the workflow ID.
+            
+            Note: The 'getall' subcommand does not require additional options.
         `
     };
 
-    console.log(baseHelp);
-
-    if (command && commandHelp[command]) {
+    // Check if the help request is for a specific command or general
+    if (command === '--help' || command === '-h' || !command) {
+        console.log(baseHelp);
+    } else if (command && commandHelp[command]) {
+        // Show specific help for the provided command
+        console.log(`Usage for '${command}' command:`);
         console.log(commandHelp[command]);
+    } else {
+        // If an unrecognized command is provided, show the base help
+        console.log(baseHelp);
     }
 
-    if (subCommand) {
-        // You can further customize this section to display help for specific sub-commands
-        // if you have more detailed options or arguments for each sub-command.
-    }
+    // Additional logic for sub-commands can be added here if needed
 }
 
-export {displayHelp};
+export { displayHelp };

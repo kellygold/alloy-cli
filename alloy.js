@@ -22,7 +22,7 @@ const help = process.argv.includes('--help') || process.argv.includes('-h');
 async function main() {
     const command = process.argv[2];
     const subCommand = process.argv[3];
-    const thirdArg = process.argv[5];
+    const thirdArg = process.argv[4];
 
     if (help) {
         displayHelp(command, subCommand);
