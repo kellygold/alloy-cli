@@ -1,4 +1,5 @@
 import chalk from 'chalk';
+import moment from 'moment';
 
 
 function formatIntegration(integration, displayBlocks = false) {
@@ -102,5 +103,34 @@ function formatUser(user) {
     console.log('\n'); // Adding a newline for better separation
 }
 
+function formatLogEntry(log, userId, workflowId) {
+    const startTime = moment(log.startedAt);
+    const endTime = moment(log.stoppedAt);
+    const durationMs = endTime.diff(startTime); // Duration in milliseconds
+    let durationFormatted;
 
-export { formatIntegration, formatWorkflow, formatCredentials, formatDeleteCredential, formatEventList, formatEventByName, formatUserList, formatUser };
+    // Decide how to format based on duration length
+    if (durationMs < 1000) { // Less than a second
+        durationFormatted = `${durationMs} ms`;
+    } else if (durationMs < 60000) { // Less than a minute
+        durationFormatted = `${(durationMs / 1000).toFixed(2)} s`;
+    } else if (durationMs < 3600000) { // Less than an hour
+        durationFormatted = `${(durationMs / 60000).toFixed(2)} m`;
+    } else { // Hours or more
+        durationFormatted = `${(durationMs / 3600000).toFixed(2)} h`;
+    }
+
+    const errorStatus = log.error ? chalk.red('Error') : chalk.green('Success');
+
+    console.log(chalk.bold(`User ID: ${userId}, Workflow ID: ${workflowId}`));
+    console.log(`Log ID: ${log.executionId}`);
+    console.log(`Status: ${errorStatus}`);
+    if (log.error) {
+        console.log(chalk.red(`Error: ${log.error}`));
+    }
+    console.log(`Started: ${chalk.cyan(startTime.format('YYYY-MM-DD HH:mm:ss'))}, Finished: ${chalk.cyan(endTime.format('YYYY-MM-DD HH:mm:ss'))}, Duration: ${chalk.yellow(durationFormatted)}`);
+    console.log(chalk.dim('--------------------------------------------------')); // Separator for readability
+}
+
+
+export { formatIntegration, formatWorkflow, formatCredentials, formatDeleteCredential, formatEventList, formatEventByName, formatUserList, formatUser, formatLogEntry };

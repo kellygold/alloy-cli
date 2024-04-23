@@ -6,6 +6,8 @@ import { listIntegrations, getIntegrationById, installIntegration } from './api/
 import { listWorkflows, configureWorkflow, runWorkflow, getWorkflowById, upgradeWorkflow } from './api/workflows.js';
 import { listCredentials, deleteCredential } from './api/credentials.js';
 import { listEvents, getByName as getEventByName } from './api/events.js';
+import { listAllLogs } from './api/alllogs.js';
+import {listLogs} from './api/logs.js'
 import { displayHelp } from './help.js';
 import { exit } from './api/exit.js';
 
@@ -57,7 +59,20 @@ async function main() {
                     break;
             }
             break;
-
+        case 'logs':
+            switch (subCommand) {
+                case 'get':
+                    const workflowIdArgIndex = process.argv.findIndex(arg => arg === '--workflowId');
+                    const userIdArgIndex = process.argv.findIndex(arg => arg === '--userId');
+                    const workflowId = workflowIdArgIndex !== -1 ? process.argv[workflowIdArgIndex + 1] : null;
+                    const userId = userIdArgIndex !== -1 ? process.argv[userIdArgIndex + 1] : null;
+                    await listLogs(config.apiKey, { workflowId, userId }, rawOutput);
+                    break;
+                case 'getall':
+                    await listAllLogs(config.apiKey, config.userId, rawOutput);
+                    break;
+                }
+                break;
         case 'integrations':
             switch (subCommand) {
                 case 'list':

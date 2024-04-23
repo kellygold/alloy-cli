@@ -6,7 +6,7 @@ import { formatIntegration } from '../format.js';
 import { fileURLToPath } from 'url';
 import path from 'path';
 
-const BASE_URL = 'https://embedded.runalloy.com/2023-06';
+const BASE_URL = 'https://embedded.runalloy.com/2023-12';
 const CONFIG_FILE = 'alloy-cli-config.json';
 
 async function listIntegrations(apiKey, userId, rawOutput) {
@@ -30,6 +30,7 @@ async function getIntegrationById(apiKey, userId, integrationId, rawOutput) {
     }
 }
 async function installIntegration(apiKey, userId, integrationId) {
+    console.log(integrationId)
     const response = await axios.get(`${BASE_URL}/users/${userId}/integrations/${integrationId}/install-url`, {
         headers: { Authorization: `bearer ${apiKey}` }
     });
